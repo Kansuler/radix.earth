@@ -132,6 +132,11 @@
   dependencies:
     "@types/node" "*"
 
+"@types/three@^0.132.1":
+  version "0.132.1"
+  resolved "https://registry.yarnpkg.com/@types/three/-/three-0.132.1.tgz#16e0889fdbd41259c2fdf18ff2444baa0afc8e57"
+  integrity sha512-d+eB9/zaK7Bo690EmWCrMwutNWiMYGnW+G5cRO4jvRHvKhI/fe2B2d6xHf1MW0yl+nQ0ij+ctezYGePWtVhAAA==
+
 "@typescript-eslint/eslint-plugin@^4.31.1":
   version "4.31.2"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/eslint-plugin/-/eslint-plugin-4.31.2.tgz#9f41efaee32cdab7ace94b15bd19b756dd099b0a"
@@ -337,7 +342,7 @@ cheap-watch@^1.0.4:
   resolved "https://registry.yarnpkg.com/cheap-watch/-/cheap-watch-1.0.4.tgz#0bcb4a3a8fbd9d5327936493f6b56baa668d8fef"
   integrity sha512-QR/9FrtRL5fjfUJBhAKCdi0lSRQ3rVRRum3GF9wDKp2TJbEIMGhUEr2yU8lORzm9Isdjx7/k9S0DFDx+z5VGtw==
 
-chokidar@^3.4.1:
+"chokidar@>=3.0.0 <4.0.0", chokidar@^3.4.1:
   version "3.5.2"
   resolved "https://registry.yarnpkg.com/chokidar/-/chokidar-3.5.2.tgz#dba3976fcadb016f66fd365021d91600d01c1e75"
   integrity sha512-ekGhOnNVPgT77r4K/U3GDhu+FQ2S8TnK/s2KbIGXi0SZWuwkZ2QNyfWdZW+TVfn84DpEP7rLeCt2UI6bJ8GwbQ==
@@ -1128,6 +1133,13 @@ sander@^0.5.0:
     mkdirp "^0.5.1"
     rimraf "^2.5.2"
 
+sass@^1.42.1:
+  version "1.42.1"
+  resolved "https://registry.yarnpkg.com/sass/-/sass-1.42.1.tgz#5ab17bebc1cb1881ad2e0c9a932c66ad64e441e2"
+  integrity sha512-/zvGoN8B7dspKc5mC6HlaygyCBRvnyzzgD5khiaCfglWztY99cYoiTUksVx11NlnemrcfH5CEaCpsUKoW0cQqg==
+  dependencies:
+    chokidar ">=3.0.0 <4.0.0"
+
 semver@^7.2.1, semver@^7.3.5:
   version "7.3.5"
   resolved "https://registry.yarnpkg.com/semver/-/semver-7.3.5.tgz#0b621c879348d8998e4b0e4be94b3f12e6018ef7"
@@ -1252,6 +1264,18 @@ svelte-hmr@^0.14.7:
   version "0.14.7"
   resolved "https://registry.yarnpkg.com/svelte-hmr/-/svelte-hmr-0.14.7.tgz#7fa8261c7b225d9409f0a86f3b9ea5c3ca6f6607"
   integrity sha512-pDrzgcWSoMaK6AJkBWkmgIsecW0GChxYZSZieIYfCP0v2oPyx2CYU/zm7TBIcjLVUPP714WxmViE9Thht4etog==
+
+svelte-preprocess-filter@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/svelte-preprocess-filter/-/svelte-preprocess-filter-1.0.0.tgz#21f3cee27c0f2232bcd671b183352fb1fdd3fdcb"
+  integrity sha512-92innv59nyEx24xbfcSurB5ocwC8qFdDtGli/JVMHzJsxyvV2yjQKIcbUqU9VIV5mKUWO2PoY93nncS2yF4ULQ==
+
+svelte-preprocess-sass@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/svelte-preprocess-sass/-/svelte-preprocess-sass-2.0.1.tgz#9f0d9f6d62cc899bbef4704b9a3e9d401a11601d"
+  integrity sha512-0y4FjRsRWcN7rJeNJnSfZ7LVAz6S7/j9Dg24XFRelr/rjMMjXORdEvXy4r38fUYmyk9Y7yjwlHCiqyGxMHhEbg==
+  dependencies:
+    svelte-preprocess-filter "^1.0.0"
 
 svelte-preprocess@^4.0.0, svelte-preprocess@^4.9.4:
   version "4.9.5"

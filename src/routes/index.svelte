@@ -1,2 +1,22 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script lang="ts">
+	import Renderer from '$lib/webgl/Renderer/Renderer.svelte';
+	import Camera from '$lib/webgl/Camera/Camera.svelte';
+	import Scene from '$lib/webgl/Scene/Scene.svelte';
+</script>
+
+<main class="main">
+	<Renderer>
+		<Scene>
+			<Camera />
+		</Scene>
+	</Renderer>
+</main>
+
+<style lang="scss">
+	:global(html, body) {
+		margin: 0;
+		padding: 0;
+		width: 100%;
+		height: 100%;
+	}
+</style>
