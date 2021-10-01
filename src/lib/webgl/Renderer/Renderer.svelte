@@ -4,6 +4,7 @@
 	import { onDestroy, onMount, setContext } from 'svelte';
 	import { WebGLRenderer } from 'three';
 	import { RendererContextParameters, rendererKey } from './renderer';
+	import type { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
 	type RendererParameters = {
 		activeCamera?: PerspectiveCamera;
@@ -15,10 +16,19 @@
 
 	const parameters: RendererParameters = {};
 
+	let controls: OrbitControls;
+
 	// Set methods to update active scene and camera through context
 	setContext<RendererContextParameters>(rendererKey, {
 		setActiveScene: (scene: Scene) => (parameters.activeScene = scene),
-		setActiveCamera: (camera: PerspectiveCamera) => (parameters.activeCamera = camera)
+		setActiveCamera: (camera: PerspectiveCamera) => {
+			parameters.activeCamera = camera;
+
+			import('three/examples/jsm/controls/OrbitControls').then(({ OrbitControls }) => {
+				controls = new OrbitControls(parameters.activeCamera, canvas);
+				controls.enableDamping = true;
+			});
+		}
 	});
 
 	if (browser) {
@@ -62,6 +72,10 @@
 				// If active scene and camera exist, render the image.
 				if (parameters.activeScene && parameters.activeCamera) {
 					renderer.render(parameters.activeScene, parameters.activeCamera);
+				}
+
+				if (controls) {
+					controls.update();
 				}
 
 				// Call tick again on the next frame

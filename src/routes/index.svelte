@@ -3,6 +3,7 @@
 	import Camera from '$lib/webgl/Camera/Camera.svelte';
 	import Scene from '$lib/webgl/Scene/Scene.svelte';
 	import Tweaks from '$lib/webgl/Tweaks/Tweaks.svelte';
+	import Globe from '$lib/webgl/Globe/Globe.svelte';
 </script>
 
 <main class="main">
@@ -10,6 +11,7 @@
 		<Tweaks>
 			<Scene>
 				<Camera />
+				<Globe />
 			</Scene>
 		</Tweaks>
 	</Renderer>

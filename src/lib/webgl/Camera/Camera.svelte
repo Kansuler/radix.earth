@@ -19,7 +19,7 @@
 		setActiveCamera(camera);
 		folder = addTweakFolder('Camera');
 		if (folder) {
-			folder.add(camera.position, 'z').max(100).min(5).name('distance');
+			folder.add(camera.position, 'z').max(10).min(5).name('distance');
 		}
 	});
 </script>
