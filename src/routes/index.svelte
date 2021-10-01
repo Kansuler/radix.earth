@@ -2,13 +2,16 @@
 	import Renderer from '$lib/webgl/Renderer/Renderer.svelte';
 	import Camera from '$lib/webgl/Camera/Camera.svelte';
 	import Scene from '$lib/webgl/Scene/Scene.svelte';
+	import Tweaks from '$lib/webgl/Tweaks/Tweaks.svelte';
 </script>
 
 <main class="main">
 	<Renderer>
-		<Scene>
-			<Camera />
-		</Scene>
+		<Tweaks>
+			<Scene>
+				<Camera />
+			</Scene>
+		</Tweaks>
 	</Renderer>
 </main>
 
