@@ -5,6 +5,7 @@
 	import Tweaks from '$lib/webgl/Tweaks/Tweaks.svelte';
 	import Globe from '$lib/webgl/Globe/Globe.svelte';
 	import Node from '$lib/webgl/Node/Node.svelte';
+	import Curve from '$lib/webgl/Curve/Curve.svelte';
 </script>
 
 <main class="main">
@@ -13,7 +14,12 @@
 			<Scene>
 				<Camera />
 				<Globe>
-					<Node lat={0} lng={0} />
+					<Node lat={57.70887} lng={11.97456} />
+					<Node lat={18.261156} lng={-93.221686} />
+					<Curve
+						coordinates1={{ lat: 57.70887, lng: 11.97456 }}
+						coordinates2={{ lat: 18.261156, lng: -93.221686 }}
+					/>
 				</Globe>
 			</Scene>
 		</Tweaks>
