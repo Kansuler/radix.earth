@@ -16,3 +16,5 @@
 		addToScene(mesh);
 	});
 </script>
+
+<slot />
