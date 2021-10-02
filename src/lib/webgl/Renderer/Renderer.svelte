@@ -27,6 +27,20 @@
 			import('three/examples/jsm/controls/OrbitControls').then(({ OrbitControls }) => {
 				controls = new OrbitControls(parameters.activeCamera, canvas);
 				controls.enableDamping = true;
+				controls.autoRotate = true;
+				controls.autoRotateSpeed = 0.5;
+				controls.enablePan = false;
+				controls.minDistance = 1.5;
+				controls.maxDistance = 4;
+				controls.minZoom = 5;
+
+				controls.addEventListener('start', () => {
+					controls.autoRotate = false;
+				});
+				controls.addEventListener('end', (event) => {
+					controls.rotateSpeed = controls.getDistance() * 0.1;
+					console.log(parameters.activeCamera.position);
+				});
 			});
 		}
 	});
@@ -62,7 +76,8 @@
 
 		onMount(() => {
 			renderer = new WebGLRenderer({
-				canvas
+				canvas,
+				alpha: true
 			});
 
 			window.addEventListener('resize', resizeEvent);
