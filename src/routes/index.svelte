@@ -1,3 +1,25 @@
+<script lang="ts" context="module">
+	import type { Load } from '@sveltejs/kit';
+	export const load: Load = async ({ fetch }) => {
+		const url = '/api/validators';
+
+		const res = await fetch(url);
+
+		if (res.ok) {
+			return {
+				props: {
+					validators: await res.json()
+				}
+			};
+		}
+
+		return {
+			status: res.status,
+			error: new Error(`could not load ${url}`)
+		};
+	};
+</script>
+
 <script lang="ts">
 	import Renderer from '$lib/webgl/Renderer/Renderer.svelte';
 	import Camera from '$lib/webgl/Camera/Camera.svelte';
@@ -6,6 +28,31 @@
 	import Globe from '$lib/webgl/Globe/Globe.svelte';
 	import Node from '$lib/webgl/Node/Node.svelte';
 	import Curve from '$lib/webgl/Curve/Curve.svelte';
+
+	type Validator = {
+		Address: string;
+		City: string;
+		Country: string;
+		ISP: string;
+		InfoURL: string;
+		IsExternalStakeAccepted: boolean;
+		Latitude: number;
+		Longitude: number;
+		Name: string;
+		NodeAddress: string;
+		NodeMatchFound: boolean;
+		Organisation: string;
+		OwnerAddress: string;
+		OwnerDelegation: string;
+		ProposalsCompleted: number;
+		ProposalsMissed: number;
+		Registered: boolean;
+		TotalDeligatedStake: string;
+		UptimePercentage: string;
+		ValidatorFee: string;
+	};
+
+	export let validators: Validator[];
 </script>
 
 <main class="main">
@@ -14,12 +61,11 @@
 			<Scene>
 				<Camera />
 				<Globe>
-					<Node lat={57.70887} lng={11.97456} />
-					<Node lat={18.261156} lng={-93.221686} />
-					<Curve
-						coordinates1={{ lat: 57.70887, lng: 11.97456 }}
-						coordinates2={{ lat: 18.261156, lng: -93.221686 }}
-					/>
+					{#each validators as validator}
+						{#if validator.NodeMatchFound}
+							<Node lat={validator.Latitude} lng={validator.Longitude} />
+						{/if}
+					{/each}
 				</Globe>
 			</Scene>
 		</Tweaks>
