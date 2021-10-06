@@ -1,13 +1,9 @@
-import { dev } from '$app/env';
 import admin from 'firebase-admin';
 import { variables } from '$lib/variables';
 
-const credential = dev
-	? admin.credential.cert(variables.firestore.serviceAccount)
-	: admin.credential.cert(JSON.stringify(variables.firestore.serviceAccount));
-
+console.log(variables.firestore.serviceAccount);
 const db = admin.initializeApp({
-	credential,
+	credential: admin.credential.cert(JSON.parse(variables.firestore.serviceAccount)),
 	projectId: variables.firestore.projectId
 });
 
