@@ -39,7 +39,6 @@
 				});
 				controls.addEventListener('end', (event) => {
 					controls.rotateSpeed = controls.getDistance() * 0.1;
-					console.log(parameters.activeCamera.position);
 				});
 			});
 		}
