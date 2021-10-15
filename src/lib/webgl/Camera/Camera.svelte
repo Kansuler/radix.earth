@@ -14,7 +14,7 @@
 
 	onMount(async () => {
 		const camera = new PerspectiveCamera(45, window.innerWidth / window.innerHeight);
-		camera.position.z = 5;
+		camera.position.z = 15;
 		addToScene(camera);
 		setActiveCamera(camera);
 		folder = addTweakFolder('Camera');

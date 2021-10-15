@@ -27,7 +27,6 @@
 	import Tweaks from '$lib/webgl/Tweaks/Tweaks.svelte';
 	import Globe from '$lib/webgl/Globe/Globe.svelte';
 	import Node from '$lib/webgl/Node/Node.svelte';
-	import Curve from '$lib/webgl/Curve/Curve.svelte';
 
 	type Validator = {
 		Address: string;
@@ -56,20 +55,23 @@
 </script>
 
 <main class="main">
-	<Renderer>
-		<Tweaks>
-			<Scene>
-				<Camera />
-				<Globe>
-					{#each validators as validator}
-						{#if validator.NodeMatchFound}
-							<Node lat={validator.Latitude} lng={validator.Longitude} />
-						{/if}
-					{/each}
-				</Globe>
-			</Scene>
-		</Tweaks>
-	</Renderer>
+	<div class="bg-blue-600">
+		<Renderer>
+			<Tweaks>
+				<Scene>
+					<Camera />
+					<Globe>
+						{#each validators as validator}
+							{#if validator.NodeMatchFound}
+								<Node lat={validator.Latitude} lng={validator.Longitude} />
+							{/if}
+						{/each}
+					</Globe>
+				</Scene>
+			</Tweaks>
+		</Renderer>
+	</div>
+	test
 </main>
 
 <style lang="scss">

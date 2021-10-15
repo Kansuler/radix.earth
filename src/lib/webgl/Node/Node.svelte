@@ -2,7 +2,7 @@
 	import { getContext, onMount } from 'svelte';
 	import { SceneContextParameters, sceneKey } from '$lib/webgl/Scene/scene';
 	import { Mesh, MeshBasicMaterial, SphereBufferGeometry } from 'three';
-	import { convertCoordinatesToPosition } from '$lib/helpers/coordinates';
+	import { convertGPSCoordinatesToPosition } from '$lib/helpers/coordinates';
 
 	export let lat: number;
 	export let lng: number;
@@ -17,7 +17,7 @@
 			})
 		);
 
-		const { x, y, z } = convertCoordinatesToPosition(lat, lng);
+		const { x, y, z } = convertGPSCoordinatesToPosition(lat, lng);
 
 		mesh.position.set(x, y, z);
 		addToScene(mesh);
