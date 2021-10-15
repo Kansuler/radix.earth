@@ -1,9 +1,13 @@
-import admin from 'firebase-admin';
+import admin, { app } from 'firebase-admin';
 import { variables } from '$lib/variables';
 
-const db = admin.initializeApp({
-	credential: admin.credential.cert(JSON.parse(variables.firestore.serviceAccount)),
-	projectId: variables.firestore.projectId
-});
+let db: app.App;
+
+if (!db) {
+	db = admin.initializeApp({
+		credential: admin.credential.cert(JSON.parse(variables.firestore.serviceAccount)),
+		projectId: variables.firestore.projectId
+	});
+}
 
 export { db };

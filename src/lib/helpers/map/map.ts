@@ -1,11 +1,14 @@
 import {
 	BufferGeometry,
-	CircleGeometry,
+	CircleBufferGeometry,
+	Color,
+	DoubleSide,
 	Float32BufferAttribute,
+	InstancedMesh,
 	LineSegments,
 	Material,
-	Mesh,
 	MeshBasicMaterial,
+	Object3D,
 	Vector3
 } from 'three';
 import * as topojson from 'topojson-client';
@@ -17,9 +20,8 @@ import {
 	convertPositionToGPSCoordinates,
 	convertGPSCoordinatesToVector
 } from '$lib/helpers/coordinates';
-import getEarthLandsMap from '@geo-maps/earth-lands-10km';
+import map from './seas.json';
 
-const map = getEarthLandsMap();
 const lookup = new GeoJsonGeometriesLookup(map);
 
 export const landMesh = (material: Material): LineSegments<BufferGeometry, Material> => {
@@ -39,13 +41,8 @@ export const landMesh = (material: Material): LineSegments<BufferGeometry, Mater
 	return new LineSegments(geometry, material);
 };
 
-export const particleSystem = async (dotCount: number): Promise<Mesh> => {
-	// Start to build a particle system
-	const particleSystem = [];
-	const particleSystemMaterial = new MeshBasicMaterial({
-		color: 0x4361ee
-	});
-
+export const particleSystem = async (dotCount: number): Promise<InstancedMesh> => {
+	const positions: number[][] = [];
 	for (let i = 0; i <= dotCount; i++) {
 		// sunflower phyllotaxis pattern
 		const phi = Math.acos(-1 + (2 * i) / dotCount);
@@ -54,19 +51,34 @@ export const particleSystem = async (dotCount: number): Promise<Mesh> => {
 		const { x, y, z } = convertSphericalCoordinatesToPosition(phi, theta);
 		const { latitude, longitude } = convertPositionToGPSCoordinates(x, y, z);
 
-		// console.log({ latitude})
 		// Check if geographical coordinates matches land
-		if (!lookup.hasContainers({ type: 'Point', coordinates: [latitude, longitude] })) {
+		if (lookup.hasContainers({ type: 'Point', coordinates: [longitude, latitude] })) {
 			continue;
 		}
 
-		const particle = new CircleGeometry(0.003, 5);
-		particle.lookAt(new Vector3(x, y, z));
-		particle.translate(x, y, z);
-		particleSystem.push(particle);
+		positions.push([x, y, z]);
 	}
 
-	const { mergeBufferGeometries } = await import('three/examples/jsm/utils/BufferGeometryUtils');
-	const geometries = mergeBufferGeometries(particleSystem, false);
-	return new Mesh(geometries, particleSystemMaterial);
+	const baseGeometry = new CircleBufferGeometry(0.003, 5);
+	const material = new MeshBasicMaterial({
+		color: 0xeebbaa,
+		side: DoubleSide
+	});
+
+	const cluster = new InstancedMesh(baseGeometry, material, positions.length);
+
+	const obj = new Object3D();
+	const vector = new Vector3();
+	for (let i = 0; i < cluster.count; i++) {
+		obj.position.set(0, 0, 0);
+		obj.lookAt(vector.set(positions[i][0], positions[i][1], positions[i][2]));
+		obj.position.set(positions[i][0], positions[i][1], positions[i][2]);
+		obj.updateMatrix();
+		cluster.setMatrixAt(i, obj.matrix);
+		cluster.setColorAt(i, new Color(0x6eacd8));
+	}
+
+	cluster.instanceMatrix.needsUpdate = true;
+
+	return cluster;
 };

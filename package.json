@@ -11,11 +11,6 @@
 		"format": "prettier --ignore-path .gitignore --write --plugin-search-dir=. ."
 	},
 	"devDependencies": {
-		"@geo-maps/earth-lands-10km": "^0.6.0",
-		"@geo-maps/earth-lands-50m": "^0.6.0",
-		"@geo-maps/earth-seas-10m": "^0.6.0",
-		"@geo-maps/earth-seas-50m": "^0.6.0",
-		"@geo-maps/earth-seas-5km": "^0.6.0",
 		"@sveltejs/adapter-vercel": "^1.0.0-next.29",
 		"@sveltejs/kit": "^1.0.0-next.180",
 		"@types/dat.gui": "^0.7.7",

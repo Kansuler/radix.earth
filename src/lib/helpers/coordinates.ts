@@ -1,4 +1,4 @@
-import { MathUtils, Spherical, Vector3 } from 'three';
+import { Vector3 } from 'three';
 
 export const convertGPSCoordinatesToPosition = (
 	latitude: number,
@@ -27,9 +27,9 @@ export const convertSphericalCoordinatesToPosition = (
 	phi: number,
 	theta: number
 ): { x: number; y: number; z: number } => {
-	const x = -(Math.sin(phi) * Math.cos(theta));
+	const x = Math.sin(phi) * Math.sin(theta);
 	const y = Math.cos(phi);
-	const z = Math.sin(phi) * Math.sin(theta);
+	const z = Math.sin(phi) * Math.cos(theta);
 
 	return { x, y, z };
 };
@@ -44,8 +44,9 @@ export const convertPositionToGPSCoordinates = (
 	y: number,
 	z: number
 ): { latitude: number; longitude: number } => {
-	const latitude = -90 + (Math.asin(x) * 180) / Math.PI;
-	const longitude = (Math.atan2(y, z) * 180) / Math.PI;
+	const longitude = -((Math.atan2(x, -z) * 180) / Math.PI);
+	const length = Math.sqrt(x * x + z * z);
+	const latitude = (Math.atan2(y, length) * 180) / Math.PI;
 
 	return { latitude, longitude };
 };

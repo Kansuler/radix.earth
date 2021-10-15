@@ -121,31 +121,6 @@
   dependencies:
     tslib "^2.1.0"
 
-"@geo-maps/earth-lands-10km@^0.6.0":
-  version "0.6.0"
-  resolved "https://registry.yarnpkg.com/@geo-maps/earth-lands-10km/-/earth-lands-10km-0.6.0.tgz#8cc069aeed4c4ed86bf5d0841b83d2883cbf75a1"
-  integrity sha512-MKoQha+qFUG1MhC2opAaaSeRdN9+r72L0r+3D9mmMVVOtC5Z+KIEejtHjpOJLKCjBbSkXWpfx+FFr2npKsmgjg==
-
-"@geo-maps/earth-lands-50m@^0.6.0":
-  version "0.6.0"
-  resolved "https://registry.yarnpkg.com/@geo-maps/earth-lands-50m/-/earth-lands-50m-0.6.0.tgz#ca796cda148c7d98199a2914c1317d31dd0b547e"
-  integrity sha512-nwW41WvT7SQ3DrmIMkv48ky3dv+Fb+boojzI9gcwi99NwHkZLZHIH1YUIZJxbWeoXJDWi5A0v9rJiuEasf/X9g==
-
-"@geo-maps/earth-seas-10m@^0.6.0":
-  version "0.6.0"
-  resolved "https://registry.yarnpkg.com/@geo-maps/earth-seas-10m/-/earth-seas-10m-0.6.0.tgz#bc8b724ab857f0231e9bc3bd8249fb3c798e856f"
-  integrity sha512-SwRe8GJDCfLxeE+gXYavjvmb3DVgkuiCuKFVp8jgIUYU9vz1wj+71J2GGAPmyg1lLT22ByIPCnTfFVWVlXLmuw==
-
-"@geo-maps/earth-seas-50m@^0.6.0":
-  version "0.6.0"
-  resolved "https://registry.yarnpkg.com/@geo-maps/earth-seas-50m/-/earth-seas-50m-0.6.0.tgz#5cb3e3a35fbab3f4a24fa6abd1fd802070ab9d0a"
-  integrity sha512-9BTr/Z2kn0JIiOOvHMKOuSkc+Bf3dmvcu+Tu4dRDUcByHSRpfmAVmzqsjb3VlCasuzwSuyXqE1A+AQYmJj5Ozw==
-
-"@geo-maps/earth-seas-5km@^0.6.0":
-  version "0.6.0"
-  resolved "https://registry.yarnpkg.com/@geo-maps/earth-seas-5km/-/earth-seas-5km-0.6.0.tgz#49a056c6193641a25cdbf664ed65774c0208a289"
-  integrity sha512-6T9a5fmIaPsQp0WjD6KFEqVYwA318gkIu39XDbhhB+qs13VSdHa5CcOhIOD2C+5RmwPkEDcpsc4LPCu2V4kXxg==
-
 "@google-cloud/common@^3.7.4":
   version "3.7.4"
   resolved "https://registry.yarnpkg.com/@google-cloud/common/-/common-3.7.4.tgz#71acac3dfe19bbed42e4763c5d85b35acea7e368"
