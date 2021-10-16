@@ -1,10 +1,21 @@
 <script lang="ts">
 	import { getContext, onMount } from 'svelte';
-	import { LineBasicMaterial, Mesh, MeshPhongMaterial, SphereBufferGeometry } from 'three';
+	import {
+		BufferGeometry,
+		Float32BufferAttribute,
+		LineBasicMaterial,
+		LineSegments,
+		Mesh,
+		MeshPhongMaterial,
+		SphereBufferGeometry
+	} from 'three';
 
 	import { sceneKey } from '../Scene/scene';
 	import { landMesh, particleSystem } from '$lib/helpers/map/map';
 	import { TweaksContextParameters, tweaksKey } from '../Tweaks/tweaks';
+
+	export let coastlines: number[] = [];
+	export let land: number[][] = [];
 
 	const { addToScene } = getContext(sceneKey);
 	const { addTweakFolder } = getContext<TweaksContextParameters>(tweaksKey);
@@ -37,11 +48,14 @@
 			linewidth: 0.005,
 			transparent: true
 		});
-		const land = landMesh(lineMaterial);
 
-		addToScene(land);
+		// Add coastlines to earth
+		const coastlinesGeometry = new BufferGeometry();
+		coastlinesGeometry.setAttribute('position', new Float32BufferAttribute(coastlines, 3));
+		const coastlinesSegments = new LineSegments(coastlinesGeometry, lineMaterial);
+		addToScene(coastlinesSegments);
 
-		addToScene(await particleSystem(80000));
+		addToScene(await particleSystem(land));
 
 		const folder = addTweakFolder('Globe');
 		if (folder) {

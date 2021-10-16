@@ -1,14 +1,17 @@
 <script lang="ts" context="module">
 	import type { Load } from '@sveltejs/kit';
 	export const load: Load = async ({ fetch }) => {
-		const url = '/api/validators';
+		const url = '/api/meta';
 
 		const res = await fetch(url);
 
 		if (res.ok) {
+			const { validators, coastlines, land } = await res.json();
 			return {
 				props: {
-					validators: await res.json()
+					validators,
+					coastlines,
+					land
 				}
 			};
 		}
@@ -21,6 +24,7 @@
 </script>
 
 <script lang="ts">
+	import type { Validator } from './api/validators';
 	import Renderer from '$lib/webgl/Renderer/Renderer.svelte';
 	import Camera from '$lib/webgl/Camera/Camera.svelte';
 	import Scene from '$lib/webgl/Scene/Scene.svelte';
@@ -28,30 +32,9 @@
 	import Globe from '$lib/webgl/Globe/Globe.svelte';
 	import Node from '$lib/webgl/Node/Node.svelte';
 
-	type Validator = {
-		Address: string;
-		City: string;
-		Country: string;
-		ISP: string;
-		InfoURL: string;
-		IsExternalStakeAccepted: boolean;
-		Latitude: number;
-		Longitude: number;
-		Name: string;
-		NodeAddress: string;
-		NodeMatchFound: boolean;
-		Organisation: string;
-		OwnerAddress: string;
-		OwnerDelegation: string;
-		ProposalsCompleted: number;
-		ProposalsMissed: number;
-		Registered: boolean;
-		TotalDeligatedStake: string;
-		UptimePercentage: string;
-		ValidatorFee: string;
-	};
-
 	export let validators: Validator[];
+	export let coastlines: number[];
+	export let land: number[][];
 </script>
 
 <main class="main">
@@ -60,7 +43,7 @@
 			<Tweaks>
 				<Scene>
 					<Camera />
-					<Globe>
+					<Globe {coastlines} {land}>
 						{#each validators as validator}
 							{#if validator.NodeMatchFound}
 								<Node lat={validator.Latitude} lng={validator.Longitude} />
@@ -71,7 +54,6 @@
 			</Tweaks>
 		</Renderer>
 	</div>
-	test
 </main>
 
 <style lang="scss">
