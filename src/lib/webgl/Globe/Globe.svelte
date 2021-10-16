@@ -2,11 +2,13 @@
 	import { getContext, onMount } from 'svelte';
 	import {
 		BufferGeometry,
+		Color,
 		Float32BufferAttribute,
 		LineBasicMaterial,
 		LineSegments,
 		Mesh,
 		MeshPhongMaterial,
+		PointLight,
 		SphereBufferGeometry
 	} from 'three';
 
@@ -24,10 +26,10 @@
 		const geometry = new SphereBufferGeometry(1, 50, 50);
 
 		const palette = {
-			globeColor: 0x842,
-			globeSpecular: 0x110808,
-			globeEmissive: 0x141560,
-			lineColor: 0xa0cae4
+			globeColor: 0x6b6b6b,
+			globeSpecular: 0x0,
+			globeEmissive: 0x63368,
+			lineColor: 0xe93
 		};
 
 		const material = new MeshPhongMaterial({

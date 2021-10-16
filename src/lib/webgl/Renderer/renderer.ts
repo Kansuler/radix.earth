@@ -6,6 +6,7 @@ const rendererKey = {};
 type RendererContextParameters = {
 	setActiveScene: (scene: Scene) => void;
 	setActiveCamera: (camera: PerspectiveCamera) => void;
+	addUpdateFunction: (fn: () => void) => void;
 };
 
 export type { RendererContextParameters };

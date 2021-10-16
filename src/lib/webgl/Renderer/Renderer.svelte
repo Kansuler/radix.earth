@@ -13,6 +13,7 @@
 
 	let canvas: HTMLCanvasElement;
 	let renderer: WebGLRenderer;
+	let functions: { (): void }[] = [];
 
 	const parameters: RendererParameters = {};
 
@@ -41,6 +42,9 @@
 					controls.rotateSpeed = controls.getDistance() * 0.1;
 				});
 			});
+		},
+		addUpdateFunction: (fn) => {
+			functions.push(fn);
 		}
 	});
 
@@ -90,6 +94,14 @@
 
 				if (controls) {
 					controls.update();
+				}
+
+				let i = 0;
+				const length = functions.length;
+
+				while (i < length) {
+					functions[i]();
+					i++;
 				}
 
 				// Call tick again on the next frame
