@@ -3,7 +3,7 @@ import { convertSphericalCoordinatesToPosition } from '$lib/helpers/coordinates'
 import type { RequestHandler, EndpointOutput } from '@sveltejs/kit';
 
 import GeoJsonGeometriesLookup from 'geojson-geometries-lookup';
-import map from '../_seas.json';
+import map from '../_continents.json';
 
 const lookup = new GeoJsonGeometriesLookup(map);
 
@@ -20,7 +20,7 @@ export const get: RequestHandler = async ({ params }): Promise<EndpointOutput<nu
 		const { latitude, longitude } = convertPositionToGPSCoordinates(x, y, z);
 
 		// Check if geographical coordinates matches land
-		if (lookup.hasContainers({ type: 'Point', coordinates: [longitude, latitude] })) {
+		if (!lookup.hasContainers({ type: 'Point', coordinates: [longitude, latitude] })) {
 			continue;
 		}
 

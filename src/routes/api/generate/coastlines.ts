@@ -3,7 +3,7 @@ import * as topojson from 'topojson-client';
 import * as topojsonServer from 'topojson-server';
 import { convertGPSCoordinatesToPosition } from '$lib/helpers/coordinates';
 
-import map from './_seas.json';
+import map from './_continents.json';
 
 export const get: RequestHandler = async ({ params }): Promise<EndpointOutput<number[]>> => {
 	const topology = topojsonServer.topology({ land: map });

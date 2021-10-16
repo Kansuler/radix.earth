@@ -31,13 +31,10 @@
 				controls.autoRotate = true;
 				controls.autoRotateSpeed = 0.5;
 				controls.enablePan = false;
-				controls.minDistance = 1.5;
-				controls.maxDistance = 4;
+				controls.enableZoom = false;
+				controls.maxDistance = 5;
 				controls.minZoom = 5;
 
-				controls.addEventListener('start', () => {
-					controls.autoRotate = false;
-				});
 				controls.addEventListener('end', (event) => {
 					controls.rotateSpeed = controls.getDistance() * 0.1;
 				});
