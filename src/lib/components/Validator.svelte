@@ -45,7 +45,7 @@
 
 		<div class="mt-2 flex justify-around  md:justify-start md:px-4  bg-white p-2">
 			<div class="flex px-2 flex-row justify-center items-center rounded-full bg-gray-100 p-1">
-				<img src={country} class="h-5 w-5" />
+				<img src={country} alt={validator.Country} class="h-5 w-5" />
 				<p class="pl-2 font-normal text-sm ml-1 text-gray-500">{validator.Country}</p>
 			</div>
 			<div
