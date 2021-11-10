@@ -24,6 +24,7 @@ export type Validator = {
 	TotalDeligatedStake: string;
 	UptimePercentage: string;
 	ValidatorFee: string;
+	PercentageStake: number;
 };
 
 export type Meta = {
@@ -38,58 +39,69 @@ export const get: RequestHandler = async (): Promise<EndpointOutput<Meta>> => {
 	const validatorsCollection = firestore.collection('Validators');
 
 	const snapshot = await validatorsCollection.get();
+	let delegatedStake = 0;
+	const result = snapshot.docs.map<Validator>((doc) => {
+		const {
+			Address,
+			City,
+			Country,
+			ISP,
+			InfoURL,
+			IsExternalStakeAccepted,
+			Latitude,
+			Longitude,
+			Name,
+			NodeAddress,
+			NodeMatchFound,
+			Organisation,
+			OwnerAddress,
+			OwnerDelegation,
+			ProposalsCompleted,
+			ProposalsMissed,
+			Registered,
+			TotalDeligatedStake,
+			UptimePercentage,
+			ValidatorFee
+		} = doc.data();
+
+		delegatedStake += parseInt(TotalDeligatedStake);
+
+		return {
+			Address,
+			City,
+			Country,
+			ISP,
+			InfoURL,
+			IsExternalStakeAccepted,
+			Latitude,
+			Longitude,
+			Name,
+			NodeAddress,
+			NodeMatchFound,
+			Organisation,
+			OwnerAddress,
+			OwnerDelegation,
+			ProposalsCompleted,
+			ProposalsMissed,
+			Registered,
+			TotalDeligatedStake,
+			UptimePercentage,
+			ValidatorFee,
+			PercentageStake: 0
+		};
+	});
+
+	for (let index = 0; index < result.length; ++index) {
+		result[index].PercentageStake = parseInt(result[index].TotalDeligatedStake) / delegatedStake;
+	}
+
+	result.sort((a, b) => b.PercentageStake - a.PercentageStake)
 
 	return {
 		body: {
 			coastlines: coastlines as number[],
 			land: land as number[][],
-			validators: snapshot.docs.map((doc) => {
-				const {
-					Address,
-					City,
-					Country,
-					ISP,
-					InfoURL,
-					IsExternalStakeAccepted,
-					Latitude,
-					Longitude,
-					Name,
-					NodeAddress,
-					NodeMatchFound,
-					Organisation,
-					OwnerAddress,
-					OwnerDelegation,
-					ProposalsCompleted,
-					ProposalsMissed,
-					Registered,
-					TotalDeligatedStake,
-					UptimePercentage,
-					ValidatorFee
-				} = doc.data();
-
-				return {
-					Address,
-					City,
-					Country,
-					ISP,
-					InfoURL,
-					IsExternalStakeAccepted,
-					Latitude,
-					Longitude,
-					Name,
-					NodeAddress,
-					NodeMatchFound,
-					Organisation,
-					OwnerAddress,
-					OwnerDelegation,
-					ProposalsCompleted,
-					ProposalsMissed,
-					Registered,
-					TotalDeligatedStake,
-					UptimePercentage,
-					ValidatorFee
-				};
-			})
+			validators: result
 		}
 	};
 };

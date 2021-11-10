@@ -1,6 +1,7 @@
 import preprocess from 'svelte-preprocess';
 import vercel from '@sveltejs/adapter-vercel';
 import { sass } from 'svelte-preprocess-sass';
+import glsl from 'vite-plugin-glsl';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -14,7 +15,11 @@ const config = {
 	kit: {
 		// hydrate the <div id="svelte"> element in src/app.html
 		target: '#svelte',
-		adapter: vercel()
+		adapter: vercel(),
+
+		vite: () => ({
+			plugins: [glsl.default()]
+		})
 	}
 };
 

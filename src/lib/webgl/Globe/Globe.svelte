@@ -2,18 +2,16 @@
 	import { getContext, onMount } from 'svelte';
 	import {
 		BufferGeometry,
-		Color,
 		Float32BufferAttribute,
 		LineBasicMaterial,
 		LineSegments,
 		Mesh,
 		MeshPhongMaterial,
-		PointLight,
 		SphereBufferGeometry
 	} from 'three';
 
 	import { sceneKey } from '../Scene/scene';
-	import { landMesh, particleSystem } from '$lib/helpers/map/map';
+	import { particleSystem } from '$lib/helpers/map/map';
 	import { TweaksContextParameters, tweaksKey } from '../Tweaks/tweaks';
 
 	export let coastlines: number[] = [];
@@ -28,8 +26,8 @@
 		const palette = {
 			globeColor: 0x6b6b6b,
 			globeSpecular: 0x0,
-			globeEmissive: 0x63368,
-			lineColor: 0xe93
+			globeEmissive: 0xcbeaa6,
+			lineColor: 0x2e4057
 		};
 
 		const material = new MeshPhongMaterial({
@@ -37,7 +35,7 @@
 			specular: palette.globeSpecular,
 			emissive: palette.globeEmissive,
 			shininess: 10,
-			opacity: 0.9,
+			opacity: 1,
 			transparent: true,
 			fog: true
 		});

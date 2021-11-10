@@ -1,28 +1,32 @@
-const { tailwindExtractor } = require("tailwindcss/lib/lib/purgeUnusedStyles");
+const { tailwindExtractor } = require('tailwindcss/lib/lib/purgeUnusedStyles');
 
 const config = {
-	mode: "aot",
+	mode: 'aot',
 	purge: {
-		content: [
-			"./src/**/*.{html,js,svelte,ts}",
-		],
+		content: ['./src/**/*.{html,js,svelte,ts}'],
 		options: {
 			defaultExtractor: (content) => [
 				// If this stops working, please open an issue at https://github.com/svelte-add/tailwindcss/issues rather than bothering Tailwind Labs about it
 				...tailwindExtractor(content),
 				// Match Svelte class: directives (https://github.com/tailwindlabs/tailwindcss/discussions/1731)
-				...[...content.matchAll(/(?:class:)*([\w\d-/:%.]+)/gm)].map(([_match, group, ..._rest]) => group),
-			],
+				...[...content.matchAll(/(?:class:)*([\w\d-/:%.]+)/gm)].map(
+					([_match, group, ..._rest]) => group
+				)
+			]
 		},
-		safelist: [/^svelte-[\d\w]+$/],
+		safelist: [/^svelte-[\d\w]+$/]
 	},
 	theme: {
-		extend: {},
+		extend: {
+			fontFamily: {
+				centuria: ['Centuria', 'sans-serif']
+			}
+		}
 	},
 	variants: {
-		extend: {},
+		extend: {}
 	},
-	plugins: [],
+	plugins: []
 };
 
 module.exports = config;

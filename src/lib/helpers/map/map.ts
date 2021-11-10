@@ -25,7 +25,7 @@ export const particleSystem = async (positions: number[][]): Promise<InstancedMe
 		obj.position.set(positions[i][0], positions[i][1], positions[i][2]);
 		obj.updateMatrix();
 		cluster.setMatrixAt(i, obj.matrix);
-		cluster.setColorAt(i, new Color(0x6eacd8));
+		cluster.setColorAt(i, new Color(0x5e5e5e));
 	}
 
 	cluster.instanceMatrix.needsUpdate = true;

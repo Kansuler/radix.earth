@@ -19,11 +19,26 @@
 
 	let controls: OrbitControls;
 
+	const sizes = {
+		width: browser && window.innerWidth,
+		height: browser && window.innerHeight
+	};
+
 	// Set methods to update active scene and camera through context
 	setContext<RendererContextParameters>(rendererKey, {
 		setActiveScene: (scene: Scene) => (parameters.activeScene = scene),
 		setActiveCamera: (camera: PerspectiveCamera) => {
 			parameters.activeCamera = camera;
+			parameters.activeCamera.aspect = sizes.width / sizes.height;
+			parameters.activeCamera.updateProjectionMatrix();
+			let zoom = 4;
+			if (browser) {
+				if (
+					/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+				) {
+					zoom = 3;
+				}
+			}
 
 			import('three/examples/jsm/controls/OrbitControls').then(({ OrbitControls }) => {
 				controls = new OrbitControls(parameters.activeCamera, canvas);
@@ -32,8 +47,8 @@
 				controls.autoRotateSpeed = 0.5;
 				controls.enablePan = false;
 				controls.enableZoom = false;
-				controls.maxDistance = 5;
-				controls.minZoom = 5;
+				controls.maxDistance = zoom;
+				controls.minZoom = zoom;
 
 				controls.addEventListener('end', (event) => {
 					controls.rotateSpeed = controls.getDistance() * 0.1;
@@ -46,15 +61,12 @@
 	});
 
 	if (browser) {
-		const sizes = {
-			width: window.innerWidth,
-			height: window.innerHeight
-		};
-
 		// Set correct aspect ratio
 		const setCameraAspect = () => {
-			parameters.activeCamera.aspect = sizes.width / sizes.height;
-			parameters.activeCamera.updateProjectionMatrix();
+			if (parameters.activeCamera) {
+				parameters.activeCamera.aspect = sizes.width / sizes.height;
+				parameters.activeCamera.updateProjectionMatrix();
+			}
 		};
 
 		const setRendererSize = () => {
@@ -65,9 +77,6 @@
 
 		// Event handler for resize event
 		const resizeEvent = () => {
-			sizes.width = window.innerWidth;
-			sizes.height = window.innerHeight;
-
 			setCameraAspect();
 			setRendererSize();
 		};
@@ -81,9 +90,16 @@
 			});
 
 			window.addEventListener('resize', resizeEvent);
-			setRendererSize();
 
+			new ResizeObserver(() => {
+				sizes.width = canvas.parentElement.clientWidth;
+				sizes.height = canvas.parentElement.clientHeight;
+				resizeEvent();
+			}).observe(canvas.parentElement);
 			const tick = () => {
+				sizes.width = canvas.parentElement.clientWidth;
+				sizes.height = canvas.parentElement.clientHeight;
+
 				// If active scene and camera exist, render the image.
 				if (parameters.activeScene && parameters.activeCamera) {
 					renderer.render(parameters.activeScene, parameters.activeCamera);
@@ -115,5 +131,7 @@
 	}
 </script>
 
-<canvas bind:this={canvas} />
-<slot />
+<div class={$$props.class}>
+	<canvas bind:this={canvas} />
+	<slot />
+</div>
