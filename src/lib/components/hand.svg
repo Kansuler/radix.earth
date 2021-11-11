@@ -1,0 +1,27 @@
+<svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-8 h-8">
+	<path
+	    d="M19 36V9L23 7L27 9V26L31.6 24L36 26L40.6 24L45 26V47H16L11 36L14 27H19"
+		fill="white"
+    />
+	<path
+		d="M19 36V9L23 7L27 9V26L31.6 24L36 26L40.6 24L45 26V47H16L11 36L14 27H19"
+		fill="white"
+	/>
+	<path d="M19 36V27H14L11 36L16 47H45V36H19Z" fill="#5CEDC2" />
+	<path
+		d="M1 1L13 13M13 1L1 13M32 6L38 14L47 1M19 36V9L23 7L27 9V26L31.6 24L36 26L40.6 24L45 26V47H16L11 36L14 27H19"
+		stroke="#003057"
+		stroke-width="2"
+		stroke-miterlimit="10"
+		stroke-linecap="round"
+		stroke-linejoin="round"
+	/>
+	<path
+		d="M19 36V9L23 7L27 9V26L31.6 24L36 26L40.6 24L45 26V47H16L11 36L14 27H19"
+		stroke="#003057"
+		stroke-width="2"
+		stroke-miterlimit="10"
+		stroke-linecap="round"
+		stroke-linejoin="round"
+	/>
+</svg>

@@ -1,0 +1,24 @@
+<svg
+	viewBox="0 0 48 48"
+	fill="none"
+	xmlns="http://www.w3.org/2000/svg"
+>
+	<path d="M43 36L23 47L3 36V14L23 3L43 14V36Z" fill="white" />
+	<path d="M3 36L23 47L43 36L38.8 33.4L23 42L7.2 33.4L3 36Z" fill="#5CEDC2" />
+	<path
+		d="M31 27L23 35M23 35L15 27M23 35V15"
+		stroke="#003057"
+		stroke-width="2"
+		stroke-miterlimit="10"
+		stroke-linecap="round"
+		stroke-linejoin="round"
+	/>
+	<path
+		d="M43 36L23 47L3 36V14L23 3L43 14V36Z"
+		stroke="#003057"
+		stroke-width="2"
+		stroke-miterlimit="10"
+		stroke-linecap="round"
+		stroke-linejoin="round"
+	/>
+</svg>
