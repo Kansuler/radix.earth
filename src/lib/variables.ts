@@ -1,4 +1,4 @@
-const buffer = new Buffer(import.meta.env.VITE_FIRESTORE_SERVICE_ACCOUNT.toString(), 'base64');
+const buffer = Buffer.from(import.meta.env.VITE_FIRESTORE_SERVICE_ACCOUNT.toString(), 'base64');
 
 export const variables = {
 	firestore: {
