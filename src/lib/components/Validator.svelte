@@ -55,13 +55,13 @@
 
 		<div class="mt-2 flex justify-around  md:justify-start md:px-4  bg-white p-2">
 			<div class="flex px-2 flex-row justify-center items-center rounded-full bg-gray-100 p-1">
-				<img src={country} alt={validator.Country} class="h-5 w-5" />
+				<img src={country} alt={validator.Country} class="h-8 w-8" />
 				<p class="pl-2 font-normal text-sm ml-1 text-gray-500">{validator.Country}</p>
 			</div>
 			<div
 				class="flex px-2 md:ml-6 flex-row justify-center items-center rounded-full bg-gray-100 p-1"
 			>
-				<img src={ServerSVG} alt="Server" class="w-5 h-5" />
+				<img src={ServerSVG} alt="Server" class="w-8 h-8" />
 				<p class="pl-2 font-normal text-sm ml-1 text-gray-500 whitespace-nowrap">
 					{validator.ISP}
 				</p>
@@ -70,7 +70,7 @@
 		<div class="mt-2 grid gap-4 grid-cols-2 md:grid-cols-3">
 			<div class="px-4 py-2 flex">
 				<div class="pr-4">
-					<img src={PercentSVG} alt="Percent of stake" class="w-5 h-5" />
+					<img src={PercentSVG} alt="Percent of stake" class="w-8 h-8" />
 				</div>
 				<div>
 					<div class="text-sm italic leading-tight">Percentage of stake</div>
@@ -79,7 +79,7 @@
 			</div>
 			<div class="px-4 py-2 flex">
 				<div class="pr-4">
-					<img src={FeeSVG} alt="Validator fee" class="w-5 h-5" />
+					<img src={FeeSVG} alt="Validator fee" class="w-8 h-8" />
 				</div>
 				<div>
 					<div class="text-sm italic leading-tight">Validator Fee</div>
@@ -88,7 +88,7 @@
 			</div>
 			<div class="px-4 py-2 flex">
 				<div class="pr-4">
-					<img src={HandSVG} alt="Validator fee" class="w-5 h-5" />
+					<img src={HandSVG} alt="Validator fee" class="w-8 h-8" />
 				</div>
 				<div>
 					<div class="text-sm italic leading-tight">Accepting stake</div>
@@ -97,7 +97,7 @@
 			</div>
 			<div class="px-4 py-2 flex">
 				<div class="pr-4">
-					<img src={HealthSVG} alt="Uptime" class="w-5 h-5" />
+					<img src={HealthSVG} alt="Uptime" class="w-8 h-8" />
 				</div>
 				<div>
 					<div class="text-sm italic leading-tight">Uptime</div>
@@ -106,7 +106,7 @@
 			</div>
 			<div class="px-4 py-2 flex">
 				<div class="pr-4">
-					<img src={BottleSVG} alt="Proposals missed" class="w-5 h-5" />
+					<img src={BottleSVG} alt="Proposals missed" class="w-8 h-8" />
 				</div>
 				<div>
 					<div class="text-sm italic leading-tight">Proposals Missed</div>
@@ -115,7 +115,7 @@
 			</div>
 			<div class="px-4 py-2 flex">
 				<div class="pr-4">
-					<img src={OwnerDelegationSVG} alt="Owner delegation" class="w-5 h-5" />
+					<img src={OwnerDelegationSVG} alt="Owner delegation" class="w-8 h-8" />
 				</div>
 				<div>
 					<div class="text-sm italic leading-tight">Owner Delegation</div>
