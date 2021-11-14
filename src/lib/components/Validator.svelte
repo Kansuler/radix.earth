@@ -29,7 +29,7 @@
 	export let validator: IValidator;
 	export let index: number;
 
-	const country = findFlagUrlByCountryName(validator.Country);
+	const country = findFlagUrlByCountryName(validator.Country ?? '');
 
 	let expand = false;
 </script>
