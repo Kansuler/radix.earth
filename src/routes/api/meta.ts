@@ -38,7 +38,7 @@ export const get: RequestHandler = async (): Promise<EndpointOutput<Meta>> => {
 
 	const validatorsCollection = firestore.collection('Validators');
 
-	const snapshot = await validatorsCollection.get();
+	const snapshot = await validatorsCollection.where('UptimePercentage', '!=', '0.00').get();
 	let delegatedStake = 0;
 	const result = snapshot.docs.map<Validator>((doc) => {
 		const {
@@ -95,7 +95,7 @@ export const get: RequestHandler = async (): Promise<EndpointOutput<Meta>> => {
 		result[index].PercentageStake = parseInt(result[index].TotalDeligatedStake) / delegatedStake;
 	}
 
-	result.sort((a, b) => b.PercentageStake - a.PercentageStake)
+	result.sort((a, b) => b.PercentageStake - a.PercentageStake);
 
 	return {
 		body: {

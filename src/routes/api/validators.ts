@@ -30,7 +30,7 @@ export const get: RequestHandler = async (): Promise<EndpointOutput<Validator[]>
 
 	const validatorsCollection = firestore.collection('Validators');
 
-	const snapshot = await validatorsCollection.get();
+	const snapshot = await validatorsCollection.where('UptimePercentage', '!=', '0.00').get();
 	let delegatedStake = 0;
 	const result = snapshot.docs.map<Validator>((doc) => {
 		const {
