@@ -45,7 +45,7 @@ export const get: RequestHandler = async (): Promise<EndpointOutput<Meta>> => {
 
 	const validatorsCollection = firestore.collection('Validators');
 
-	const snapshot = await validatorsCollection.where('UptimePercentage', '!=', '0.00').get();
+	const snapshot = await validatorsCollection.where('DisplayNode', '==', true).get();
 	let delegatedStake = 0;
 	const countryStake: Record<string, number> = {};
 	const hostStake: Record<string, number> = {};
