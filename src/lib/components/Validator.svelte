@@ -133,7 +133,7 @@
 						{#if validator.OwnerDelegation === '0'}
 							0
 						{:else}
-							{validator.OwnerDelegation.substr(0, validator.OwnerDelegation.length - 19)}
+							{validator.OwnerDelegation.substr(0, validator.OwnerDelegation.length - 18)}
 						{/if}
 					</div>
 				</div>
