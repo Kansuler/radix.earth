@@ -38,7 +38,7 @@ export type Meta = {
 
 export const get: RequestHandler = async (): Promise<EndpointOutput<Meta>> => {
 	const HostName = (name: string): string => {
-		return name.split(/[^A-Za-z]/)[0];
+		return name.split(/[^A-Za-z]/)[0].toLowerCase();
 	};
 
 	const firestore = db.firestore();
