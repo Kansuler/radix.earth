@@ -61,7 +61,7 @@
 					<Camera />
 					<Globe {coastlines} {land}>
 						{#each validators as validator}
-							{#if validator.NodeMatchFound}
+							{#if validator.NodeMatchFound || validator.ManualLocationData}
 								<Node
 									lat={validator.Latitude}
 									lng={validator.Longitude}

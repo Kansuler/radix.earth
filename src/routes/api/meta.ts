@@ -25,6 +25,7 @@ export type Validator = {
 	UptimePercentage: string;
 	ValidatorFee: string;
 	PercentageStake: number;
+	ManualLocationData: boolean;
 };
 
 export type Meta = {
@@ -61,7 +62,8 @@ export const get: RequestHandler = async (): Promise<EndpointOutput<Meta>> => {
 			Registered,
 			TotalDeligatedStake,
 			UptimePercentage,
-			ValidatorFee
+			ValidatorFee,
+			ManualLocationData
 		} = doc.data();
 
 		delegatedStake += parseInt(TotalDeligatedStake);
@@ -87,7 +89,8 @@ export const get: RequestHandler = async (): Promise<EndpointOutput<Meta>> => {
 			TotalDeligatedStake,
 			UptimePercentage,
 			ValidatorFee,
-			PercentageStake: 0
+			PercentageStake: 0,
+			ManualLocationData
 		};
 	});
 

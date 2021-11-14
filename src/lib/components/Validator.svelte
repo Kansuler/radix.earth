@@ -45,8 +45,12 @@
 
 		<div class="mt-2 flex justify-around  md:justify-start md:px-4  bg-white p-2">
 			<div class="flex px-2 flex-row justify-center items-center rounded-full bg-gray-100 p-1">
-				<img src={country} alt={validator.Country} class="h-5 w-5" />
-				<p class="pl-2 font-normal text-sm ml-1 text-gray-500">{validator.Country}</p>
+				{#if validator.Country !== ''}
+					<img src={country} alt={validator.Country} class="h-5 w-5" />
+				{/if}
+				<p class="pl-2 font-normal text-sm ml-1 text-gray-500">
+					{validator.Country !== '' ? validator.Country : 'Unknown Country'}
+				</p>
 			</div>
 			<div
 				class="flex px-2 md:ml-6 flex-row justify-center items-center rounded-full bg-gray-100 p-1"
@@ -70,7 +74,7 @@
 					/>
 				</svg>
 				<p class="pl-2 font-normal text-sm ml-1 text-gray-500 whitespace-nowrap">
-					{validator.ISP}
+					{validator.ISP !== '' ? validator.ISP : 'Unknown Host'}
 				</p>
 			</div>
 		</div>
@@ -279,7 +283,9 @@
 				</div>
 				<div>
 					<div class="text-sm italic leading-tight">Owner Delegation</div>
-					<div class="font-bold">{validator.OwnerDelegation}</div>
+					<div class="font-bold">
+						{validator.OwnerDelegation.substr(0, validator.OwnerDelegation.length - 19)}
+					</div>
 				</div>
 			</div>
 		</div>
