@@ -1,0 +1,20 @@
+<svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+	<path d="M5 31L20 39L35 31V13L20 5L5 13V31Z" fill="white" />
+	<path d="M5 31L20 39L35 31V13L5 31Z" fill="#5CEDC2" />
+	<path
+		d="M1 23H10L14 16L18 29L23 19L27 25L31 20M47 38L35 31"
+		stroke="#003057"
+		stroke-width="2"
+		stroke-miterlimit="10"
+		stroke-linecap="round"
+		stroke-linejoin="round"
+	/>
+	<path
+	    d="M5 27V31L20 39L35 31V13L20 5L5 13V19"
+		stroke="#003057"
+		stroke-width="2"
+		stroke-miterlimit="10"
+		stroke-linecap="round"
+		stroke-linejoin="round"
+	/>
+</svg>
