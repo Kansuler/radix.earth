@@ -128,9 +128,13 @@
 					<img src={OwnerDelegationSVG} alt="Owner delegation" class="w-8 h-8" />
 				</div>
 				<div>
-					<div class="text-sm italic leading-tight">Owner Delegation</div>
+					<div class="text-sm italic leading-tight">Owner Delegation (XRD)</div>
 					<div class="font-bold">
-						{validator.OwnerDelegation.substr(0, validator.OwnerDelegation.length - 19)}
+						{#if validator.OwnerDelegation === '0'}
+							0
+						{:else}
+							{validator.OwnerDelegation.substr(0, validator.OwnerDelegation.length - 19)}
+						{/if}
 					</div>
 				</div>
 			</div>
