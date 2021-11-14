@@ -34,6 +34,8 @@
 		UptimePercentage: string;
 		ValidatorFee: string;
 		PercentageStake: number;
+		CountryStake: number;
+		HostStake: number;
 	};
 
 	export let validator: IValidator;
@@ -59,7 +61,9 @@
 					<img src={country} alt={validator.Country} class="h-5 w-5" />
 				{/if}
 				<p class="pl-2 font-normal text-sm ml-1 text-gray-500">
-					{validator.Country !== '' ? validator.Country : 'Unknown Country'}
+					{validator.Country !== ''
+						? `${validator.Country} (${(validator.CountryStake * 100).toFixed(3)}%)`
+						: 'Unknown Country'}
 				</p>
 			</div>
 			<div
@@ -67,7 +71,9 @@
 			>
 				<img src={ServerSVG} alt="Server" class="w-5 h-5" />
 				<p class="pl-2 font-normal text-sm ml-1 text-gray-500 whitespace-nowrap">
-					{validator.ISP !== '' ? validator.ISP : 'Unknown Host'}
+					{validator.ISP !== ''
+						? `${validator.ISP} (${(validator.HostStake * 100).toFixed(3)}%)`
+						: 'Unknown Host'}
 				</p>
 			</div>
 		</div>

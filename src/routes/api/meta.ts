@@ -26,6 +26,8 @@ export type Validator = {
 	ValidatorFee: string;
 	PercentageStake: number;
 	ManualLocationData: boolean;
+	HostStake: number;
+	CountryStake: number;
 };
 
 export type Meta = {
@@ -35,12 +37,18 @@ export type Meta = {
 };
 
 export const get: RequestHandler = async (): Promise<EndpointOutput<Meta>> => {
+	const HostName = (name: string): string => {
+		return name.split(/[^A-Za-z]/)[0];
+	};
+
 	const firestore = db.firestore();
 
 	const validatorsCollection = firestore.collection('Validators');
 
 	const snapshot = await validatorsCollection.where('UptimePercentage', '!=', '0.00').get();
 	let delegatedStake = 0;
+	const countryStake: Record<string, number> = {};
+	const hostStake: Record<string, number> = {};
 	const result = snapshot.docs.map<Validator>((doc) => {
 		const {
 			Address,
@@ -67,6 +75,15 @@ export const get: RequestHandler = async (): Promise<EndpointOutput<Meta>> => {
 		} = doc.data();
 
 		delegatedStake += parseInt(TotalDeligatedStake);
+		if (!countryStake.hasOwnProperty(Country)) {
+			countryStake[Country] = 0;
+		}
+		countryStake[Country] += parseInt(TotalDeligatedStake);
+		const host = HostName(ISP);
+		if (!hostStake.hasOwnProperty(host)) {
+			hostStake[host] = 0;
+		}
+		hostStake[host] += parseInt(TotalDeligatedStake);
 
 		return {
 			Address,
@@ -96,6 +113,8 @@ export const get: RequestHandler = async (): Promise<EndpointOutput<Meta>> => {
 
 	for (let index = 0; index < result.length; ++index) {
 		result[index].PercentageStake = parseInt(result[index].TotalDeligatedStake) / delegatedStake;
+		result[index].HostStake = hostStake[HostName(result[index].ISP)] / delegatedStake;
+		result[index].CountryStake = countryStake[result[index].Country] / delegatedStake;
 	}
 
 	result.sort((a, b) => b.PercentageStake - a.PercentageStake);
