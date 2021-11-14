@@ -38,6 +38,10 @@
 	export let land: number[][];
 </script>
 
+<svelte:head>
+	<title>Radix Earth | Make an informed staking decision.</title>
+</svelte:head>
+
 <div class="absolute py-4 px-8">
 	<div class="">By Kansuler</div>
 	<div class="text-xs font-italic">Support Radix Earth</div>
